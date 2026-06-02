@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+  <title id="title">Engine architecture overview</title>
+  <desc id="desc">Layered architecture for game, app, renderer, and engine core crates.</desc>
+  <rect width="960" height="520" fill="#111318"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="48" y="56" fill="#edf2f7" font-size="30" font-weight="700">bkg-engine architecture</text>
+    <text x="48" y="88" fill="#aab4c3" font-size="16">Core simulation first, rendering and app platform kept separate.</text>
+  </g>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+  <g font-family="Segoe UI, Arial, sans-serif" filter="url(#shadow)">
+    <rect x="48" y="124" width="864" height="74" rx="8" fill="#243447"/>
+    <text x="84" y="168" fill="#ffffff" font-size="24" font-weight="700">sandbox_game</text>
+    <text x="286" y="168" fill="#cbd5e1" font-size="16">game rules - demo loop - content registration</text>
+    <rect x="48" y="226" width="410" height="88" rx="8" fill="#2f6fc5"/>
+    <text x="84" y="264" fill="#ffffff" font-size="22" font-weight="700">engine_app</text>
+    <text x="84" y="290" fill="#dbeafe" font-size="16">window - input - game loop</text>
+    <rect x="502" y="226" width="410" height="88" rx="8" fill="#4b7f52"/>
+    <text x="538" y="264" fill="#ffffff" font-size="22" font-weight="700">engine_render</text>
+    <text x="538" y="290" fill="#dcfce7" font-size="16">chunk textures - camera - lighting overlay</text>
+    <rect x="48" y="352" width="864" height="110" rx="8" fill="#6f4e30"/>
+    <text x="84" y="392" fill="#ffffff" font-size="24" font-weight="700">engine_core</text>
+    <text x="84" y="424" fill="#ffedd5" font-size="16">world - chunks - cells - materials - simulation - save/load</text>
+  </g>
+  <g fill="none" stroke="#edf2f7" stroke-width="3" stroke-linecap="round" opacity="0.75">
+    <path d="M480 198v28"/>
+    <path d="M253 314v38"/>
+    <path d="M707 314v38"/>
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="14" fill="#aab4c3">
+    <text x="48" y="492">engine_core has no window or GPU dependency</text>
+  </g>
+</svg>
