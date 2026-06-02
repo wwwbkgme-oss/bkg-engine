@@ -1,36 +1,161 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
-  <title id="title">Engine architecture overview</title>
-  <desc id="desc">Layered architecture for game, app, renderer, and engine core crates.</desc>
-  <rect width="960" height="520" fill="#111318"/>
-  <g font-family="Segoe UI, Arial, sans-serif">
-    <text x="48" y="56" fill="#edf2f7" font-size="30" font-weight="700">bkg-engine architecture</text>
-    <text x="48" y="88" fill="#aab4c3" font-size="16">Core simulation first, rendering and app platform kept separate.</text>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 760" role="img" aria-labelledby="title desc">
+  <title id="title">BKG Engine architecture console</title>
+  <desc id="desc">A cyberpunk technical dashboard showing crate boundaries, data flow, and milestone status for the Rust voxel engine.</desc>
   <defs>
-    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000000" flood-opacity="0.25"/>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="1" stop-color="#03060b"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#101b2b" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#07101b" stop-opacity="0.96"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
     </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0 0l10 5-10 5z" fill="#39dff6"/>
+    </marker>
+    <style>
+      .panel{fill:url(#panel);stroke:#284158;stroke-width:1.2}
+      .box{fill:#0d1724;stroke:#304a63;stroke-width:1.2}
+      .active{fill:#171a0b;stroke:#f5d90a;stroke-width:1.6}
+      .line{stroke:#284158;stroke-width:1}
+      .flow{fill:none;stroke:#39dff6;stroke-width:2;marker-end:url(#arrow);filter:url(#glow)}
+      .muted{fill:#8fa3b7}
+      .text{fill:#e9f2ff}
+      .cyan{fill:#39dff6}
+      .pink{fill:#ff3fd7}
+      .yellow{fill:#f5d90a}
+      .green{fill:#3dff9e}
+      .mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+      .sans{font-family:Segoe UI,Arial,sans-serif}
+    </style>
   </defs>
-  <g font-family="Segoe UI, Arial, sans-serif" filter="url(#shadow)">
-    <rect x="48" y="124" width="864" height="74" rx="8" fill="#243447"/>
-    <text x="84" y="168" fill="#ffffff" font-size="24" font-weight="700">sandbox_game</text>
-    <text x="286" y="168" fill="#cbd5e1" font-size="16">game rules - demo loop - content registration</text>
-    <rect x="48" y="226" width="410" height="88" rx="8" fill="#2f6fc5"/>
-    <text x="84" y="264" fill="#ffffff" font-size="22" font-weight="700">engine_app</text>
-    <text x="84" y="290" fill="#dbeafe" font-size="16">window - input - game loop</text>
-    <rect x="502" y="226" width="410" height="88" rx="8" fill="#4b7f52"/>
-    <text x="538" y="264" fill="#ffffff" font-size="22" font-weight="700">engine_render</text>
-    <text x="538" y="290" fill="#dcfce7" font-size="16">chunk textures - camera - lighting overlay</text>
-    <rect x="48" y="352" width="864" height="110" rx="8" fill="#6f4e30"/>
-    <text x="84" y="392" fill="#ffffff" font-size="24" font-weight="700">engine_core</text>
-    <text x="84" y="424" fill="#ffedd5" font-size="16">world - chunks - cells - materials - simulation - save/load</text>
+
+  <rect width="1440" height="760" fill="url(#bg)"/>
+  <path d="M0 88h1440M0 704h1440M32 0v760M1408 0v760" stroke="#1d3247" stroke-width="1"/>
+
+  <g class="sans">
+    <text x="34" y="50" fill="#f5d90a" font-size="36" font-weight="800" letter-spacing="2">BKG ENGINE</text>
+    <text x="36" y="74" class="muted" font-size="14" letter-spacing="3">SYSTEM ARCHITECTURE MAP</text>
+    <text x="1202" y="40" class="text mono" font-size="14">CORE BUILD 0.1.0</text>
+    <text x="1202" y="64" class="green mono" font-size="14">BOUNDARIES CLEAN</text>
   </g>
-  <g fill="none" stroke="#edf2f7" stroke-width="3" stroke-linecap="round" opacity="0.75">
-    <path d="M480 198v28"/>
-    <path d="M253 314v38"/>
-    <path d="M707 314v38"/>
+
+  <g transform="translate(36 112)">
+    <rect class="panel" width="250" height="548" rx="6"/>
+    <text x="18" y="32" class="text sans" font-size="16" font-weight="700">CRATES</text>
+    <g class="mono" font-size="13">
+      <rect x="18" y="58" width="214" height="56" rx="4" class="active"/>
+      <text x="34" y="82" class="yellow">engine_core</text>
+      <text x="34" y="102" class="muted">implemented</text>
+      <rect x="18" y="128" width="214" height="56" rx="4" class="box"/>
+      <text x="34" y="152" class="text">sandbox_game</text>
+      <text x="34" y="172" class="green">demo runner</text>
+      <rect x="18" y="198" width="214" height="56" rx="4" class="box"/>
+      <text x="34" y="222" class="muted">engine_render</text>
+      <text x="34" y="242" class="pink">planned</text>
+      <rect x="18" y="268" width="214" height="56" rx="4" class="box"/>
+      <text x="34" y="292" class="muted">engine_app</text>
+      <text x="34" y="312" class="pink">planned</text>
+    </g>
+    <line x1="18" x2="232" y1="360" y2="360" class="line"/>
+    <text x="18" y="396" class="muted mono" font-size="13">RULE</text>
+    <text x="18" y="426" class="text mono" font-size="13">core has no window</text>
+    <text x="18" y="450" class="text mono" font-size="13">core has no GPU</text>
+    <text x="18" y="474" class="text mono" font-size="13">render reads world</text>
+    <text x="18" y="498" class="text mono" font-size="13">simulation mutates world</text>
   </g>
-  <g font-family="ui-monospace, SFMono-Regular, Consolas, monospace" font-size="14" fill="#aab4c3">
-    <text x="48" y="492">engine_core has no window or GPU dependency</text>
+
+  <g transform="translate(330 112)">
+    <rect class="panel" width="760" height="548" rx="6"/>
+    <text x="22" y="34" class="text sans" font-size="16" font-weight="700">DATA FLOW</text>
+
+    <g class="sans" font-size="15">
+      <rect x="58" y="76" width="170" height="74" rx="6" class="active"/>
+      <text x="86" y="108" class="yellow" font-weight="700">Input State</text>
+      <text x="86" y="130" class="muted mono" font-size="12">keyboard / mouse</text>
+
+      <rect x="304" y="76" width="170" height="74" rx="6" class="box"/>
+      <text x="334" y="108" class="text" font-weight="700">Entities</text>
+      <text x="334" y="130" class="muted mono" font-size="12">player / items</text>
+
+      <rect x="550" y="76" width="170" height="74" rx="6" class="box"/>
+      <text x="586" y="108" class="text" font-weight="700">Physics</text>
+      <text x="586" y="130" class="muted mono" font-size="12">AABB queries</text>
+
+      <rect x="58" y="226" width="170" height="86" rx="6" class="active"/>
+      <text x="88" y="260" class="yellow" font-weight="700">World</text>
+      <text x="88" y="282" class="muted mono" font-size="12">HashMap chunks</text>
+
+      <rect x="304" y="226" width="170" height="86" rx="6" class="active"/>
+      <text x="328" y="260" class="yellow" font-weight="700">Simulation</text>
+      <text x="328" y="282" class="muted mono" font-size="12">sand / water</text>
+
+      <rect x="550" y="226" width="170" height="86" rx="6" class="box"/>
+      <text x="584" y="260" class="text" font-weight="700">Lighting</text>
+      <text x="584" y="282" class="muted mono" font-size="12">planned</text>
+
+      <rect x="58" y="388" width="170" height="86" rx="6" class="box"/>
+      <text x="88" y="422" class="text" font-weight="700">Save Queue</text>
+      <text x="88" y="444" class="muted mono" font-size="12">bincode chunks</text>
+
+      <rect x="304" y="388" width="170" height="86" rx="6" class="box"/>
+      <text x="328" y="422" class="text" font-weight="700">Render Extract</text>
+      <text x="328" y="444" class="muted mono" font-size="12">dirty textures</text>
+
+      <rect x="550" y="388" width="170" height="86" rx="6" class="box"/>
+      <text x="590" y="422" class="text" font-weight="700">wgpu</text>
+      <text x="590" y="444" class="muted mono" font-size="12">future crate</text>
+    </g>
+
+    <path class="flow" d="M228 113h72"/>
+    <path class="flow" d="M474 113h72"/>
+    <path class="flow" d="M635 150v72"/>
+    <path class="flow" d="M550 269h-72"/>
+    <path class="flow" d="M304 269h-72"/>
+    <path class="flow" d="M143 312v72"/>
+    <path class="flow" d="M228 431h72"/>
+    <path class="flow" d="M474 431h72"/>
+    <path class="flow" d="M389 312v72"/>
+  </g>
+
+  <g transform="translate(1126 112)">
+    <rect class="panel" width="278" height="548" rx="6"/>
+    <text x="18" y="32" class="text sans" font-size="16" font-weight="700">ROADMAP SIGNAL</text>
+    <g class="mono" font-size="13">
+      <text x="20" y="76" class="green">01 CORE TYPES</text>
+      <rect x="20" y="88" width="220" height="6" fill="#152238"/>
+      <rect x="20" y="88" width="220" height="6" fill="#3dff9e"/>
+      <text x="20" y="126" class="green">02 CHUNK WORLD</text>
+      <rect x="20" y="138" width="220" height="6" fill="#152238"/>
+      <rect x="20" y="138" width="220" height="6" fill="#3dff9e"/>
+      <text x="20" y="176" class="yellow">03 SIMULATION</text>
+      <rect x="20" y="188" width="220" height="6" fill="#152238"/>
+      <rect x="20" y="188" width="142" height="6" fill="#f5d90a"/>
+      <text x="20" y="226" class="pink">04 RENDERER</text>
+      <rect x="20" y="238" width="220" height="6" fill="#152238"/>
+      <rect x="20" y="238" width="30" height="6" fill="#ff3fd7"/>
+      <text x="20" y="276" class="pink">05 APP LOOP</text>
+      <rect x="20" y="288" width="220" height="6" fill="#152238"/>
+      <rect x="20" y="288" width="18" height="6" fill="#ff3fd7"/>
+    </g>
+    <line x1="18" x2="260" y1="326" y2="326" class="line"/>
+    <text x="18" y="366" class="muted mono" font-size="13">NEXT COMMIT TARGET</text>
+    <rect x="18" y="386" width="242" height="62" rx="4" fill="#111d2d" stroke="#f5d90a"/>
+    <text x="38" y="414" class="yellow sans" font-size="16" font-weight="700">chunk texture renderer</text>
+    <text x="38" y="438" class="muted mono" font-size="12">wgpu + camera + culling</text>
+    <text x="18" y="500" class="muted mono" font-size="13">DOCS STATUS</text>
+    <text x="18" y="528" class="text mono" font-size="13">architecture: aligned</text>
+  </g>
+
+  <g class="mono" font-size="13" fill="#8fa3b7">
+    <text x="28" y="736">SYSTEM MAP - WORLD -> SIMULATION -> RENDER EXTRACT</text>
+    <text x="1128" y="736">CONNECTED TO: docs/architecture.md</text>
   </g>
 </svg>
