@@ -16,6 +16,7 @@ sollten erst verwendet werden, wenn ein Renderer im Repository existiert.
 ## Dokumente
 
 - [Architektur](architecture.md)
+- [NOVA 2.5 Master Architecture](nova-2-5-master-architecture.md)
 - [Welt, Chunks und Zellen](world-chunks-cells.md)
 - [Materialien und Simulation](materials-simulation.md)
 - [Rendering, Kamera und Licht](rendering-camera-lighting.md)
