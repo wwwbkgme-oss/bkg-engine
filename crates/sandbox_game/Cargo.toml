@@ -1,0 +1,8 @@
+[package]
+name = "sandbox_game"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[dependencies]
+engine_core = { path = "../engine_core" }

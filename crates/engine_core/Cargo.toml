@@ -1,0 +1,9 @@
+[package]
+name = "engine_core"
+edition.workspace = true
+license.workspace = true
+version.workspace = true
+
+[dependencies]
+bincode.workspace = true
+serde.workspace = true
