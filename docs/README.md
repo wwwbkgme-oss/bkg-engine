@@ -9,6 +9,10 @@ Entities, Items, Licht, Speichern/Laden und spaeter Modding unterstuetzen.
 Das Projekt ist kein einzelnes Spiel, sondern ein technisches Fundament fuer ein
 Terraria-, Falling-Sand- oder Noita-aehnliches Spiel.
 
+Die Doku verkauft deshalb keine fertige Gameplay-Szene. Sie zeigt technische
+Architektur, Datenfluss, Entscheidungen und Roadmap. Echte Screenshots oder GIFs
+sollten erst verwendet werden, wenn ein Renderer im Repository existiert.
+
 ## Dokumente
 
 - [Architektur](architecture.md)
@@ -18,6 +22,7 @@ Terraria-, Falling-Sand- oder Noita-aehnliches Spiel.
 - [Entities, Physik und Gameplay](entities-physics-gameplay.md)
 - [Speichern, Weltgenerierung und Modding](persistence-generation-modding.md)
 - [Projektstruktur und Roadmap](project-structure-roadmap.md)
+- [Visual Guidelines](visual-guidelines.md)
 
 ## Grundprinzip
 
@@ -28,12 +33,14 @@ Welt = Menge aus Chunks
 Entity = bewegliches Objekt ausserhalb des Zellrasters
 ```
 
-Empfohlener Start:
+## Aktuelle technische Empfehlung
 
 ```text
-64x64 Zellen pro Chunk
-Chunk-Textur-Rendering
-Single-threaded Simulation
-Desktop-first
-Rust Workspace mit mehreren Crates
+Chunk:      64x64
+Region:     2x2 Chunks
+Render:     Chunk-Texturen
+Licht:      eigene Light-Texturen
+Simulation: Chunk-basiert
 ```
+
+Das ist ein guter Kompromiss aus Qualitaet, Skalierbarkeit und Performance.

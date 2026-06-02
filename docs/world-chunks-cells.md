@@ -14,6 +14,25 @@ Empfohlener Startwert:
 Dieser Wert ist ein guter Kompromiss zwischen Update-Kosten, Verwaltungsaufwand
 und Rendering.
 
+## Regionen
+
+Eine Region fasst mehrere Chunks zu einem groesseren Verwaltungsblock zusammen.
+Fuer den aktuellen Stand ist eine kleine Region sinnvoll:
+
+```text
+Region: 2x2 Chunks
+```
+
+Das bedeutet:
+
+```text
+1 Region = 4 Chunks
+1 Region = 128x128 Zellen bei 64x64 Zellen pro Chunk
+```
+
+Diese Groesse bleibt klein genug fuer schnelle Updates und ist trotzdem
+nuetzlich fuer Speichern, Laden, Streaming und spaetere Hintergrund-Jobs.
+
 ## Grundtypen
 
 ```rust
@@ -41,10 +60,13 @@ pub struct LocalPos {
 
 ## Chunk
 
+Der aktuelle Code nutzt `Vec<Cell>` fuer die Zellablage. Eine spaetere feste
+Array-/Box-Variante kann geprueft werden, wenn Profiling zeigt, dass sie hilft.
+
 ```rust
 pub struct Chunk {
     pub pos: ChunkPos,
-    pub cells: Box<[Cell; CHUNK_AREA]>,
+    pub cells: Vec<Cell>,
 
     pub dirty_render: bool,
     pub dirty_light: bool,

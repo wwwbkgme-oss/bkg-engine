@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">Chunk data flow diagram</title>
+  <desc id="desc">Technical dark UI diagram showing Cell to Chunk to World to Simulation to Dirty Chunks to Renderer.</desc>
+  <rect width="1200" height="520" fill="#050b12"/>
+  <defs><filter id="yellowGlow" x="-35%" y="-35%" width="170%" height="170%"><feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#f6d80f" flood-opacity="0.55"/></filter></defs>
+  <g opacity="0.22" stroke="#1f344f" stroke-width="1"><path d="M60 100H1140M60 180H1140M60 260H1140M60 340H1140M60 420H1140"/><path d="M100 70V460M220 70V460M340 70V460M460 70V460M580 70V460M700 70V460M820 70V460M940 70V460M1060 70V460"/></g>
+  <g font-family="Segoe UI, Arial, sans-serif"><text x="54" y="58" fill="#f6d80f" font-size="30" font-weight="700" letter-spacing="2">CHUNK DATA FLOW</text><text x="54" y="86" fill="#9fb4ca" font-size="15" letter-spacing="2">TECHNICAL DIAGRAM - NOT GAMEPLAY ART</text></g>
+  <g font-family="ui-monospace, Consolas, monospace" font-size="15">
+    <g fill="#101b2a" stroke="#30445f"><rect x="54" y="160" width="132" height="86" rx="6"/><rect x="246" y="160" width="132" height="86" rx="6"/><rect x="438" y="160" width="132" height="86" rx="6"/><rect x="630" y="160" width="156" height="86" rx="6"/><rect x="846" y="160" width="156" height="86" rx="6"/><rect x="1062" y="160" width="132" height="86" rx="6"/></g>
+    <g fill="#ffffff" font-weight="700"><text x="92" y="194">Cell</text><text x="286" y="194">Chunk</text><text x="478" y="194">World</text><text x="652" y="194">Simulation</text><text x="870" y="194">Dirty Chunks</text><text x="1084" y="194">Renderer</text></g>
+    <g fill="#9fb4ca" font-size="12"><text x="76" y="222">material</text><text x="276" y="222">64x64 cells</text><text x="464" y="222">chunk map</text><text x="656" y="222">sand / water</text><text x="864" y="222">render save light</text><text x="1084" y="222">textures</text></g>
+  </g>
+  <g fill="none" stroke="#f6d80f" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" filter="url(#yellowGlow)"><path d="M186 203H238"/><path d="M378 203H430"/><path d="M570 203H622"/><path d="M786 203H838"/><path d="M1002 203H1054"/><path d="M230 194l8 9-8 9M422 194l8 9-8 9M614 194l8 9-8 9M830 194l8 9-8 9M1046 194l8 9-8 9"/></g>
+  <g fill="#07111c" stroke="#30445f"><rect x="246" y="306" width="132" height="98" rx="6"/><rect x="438" y="306" width="132" height="98" rx="6"/><rect x="630" y="306" width="156" height="98" rx="6"/><rect x="846" y="306" width="156" height="98" rx="6"/></g>
+  <g font-family="ui-monospace, Consolas, monospace" font-size="13" fill="#dbe7f3"><text x="266" y="338">Region</text><text x="266" y="362">2x2 chunks</text><text x="458" y="338">Save Queue</text><text x="458" y="362">versioned</text><text x="650" y="338">Light Texture</text><text x="650" y="362">separate</text><text x="866" y="338">GPU Upload</text><text x="866" y="362">dirty only</text></g>
+  <g fill="none" stroke="#00d7ff" stroke-width="2" opacity="0.8"><path d="M312 246V306"/><path d="M504 246V306"/><path d="M708 246V306"/><path d="M924 246V306"/></g>
+  <text x="54" y="468" fill="#718399" font-family="ui-monospace, Consolas, monospace" font-size="14">preferred docs visual: quiet technical dashboard, no fake gameplay scene before renderer exists</text>
+</svg>

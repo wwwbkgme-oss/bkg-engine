@@ -12,6 +12,19 @@ Jede Zelle schreibt ein Pixel in die Textur
 1 Chunk = 1 Quad + 1 Textur
 ```
 
+Aktuelle Empfehlung:
+
+```text
+Render: Chunk-Texturen
+Licht:  eigene Light-Texturen
+```
+
+## Visual-Richtung
+
+Solange noch kein Renderer existiert, sollten die Docs keine fake Gameplay-Szene
+zeigen. Besser sind technische Diagramme fuer Pipeline, Chunk-Layout und
+Datenfluss. Echte Screenshots oder GIFs kommen erst aus dem laufenden Renderer.
+
 ## Renderdaten
 
 ```rust

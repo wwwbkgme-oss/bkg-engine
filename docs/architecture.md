@@ -63,6 +63,16 @@ engine_render kuemmert sich um GPU und Darstellung.
 sandbox_game registriert konkrete Inhalte und Gameplay-Regeln.
 ```
 
+Aktueller Repo-Stand:
+
+```text
+engine_core
+sandbox_game
+```
+
+`engine_app` und `engine_render` sind geplante naechste Schichten, aber noch
+nicht Teil des aktuellen Implementierungsstands.
+
 ## Empfohlene Libraries
 
 ```toml
@@ -85,6 +95,17 @@ lz4_flex = "0.x"
 zstd = "0.x"
 ```
 
+## Data Flow
+
+```text
+Cell
+  -> Chunk
+  -> World
+  -> Simulation
+  -> Dirty Chunks
+  -> Renderer
+```
+
 ## Frame-Ablauf
 
 ```text
@@ -103,8 +124,13 @@ Input sammeln
 ## Wichtige Architekturentscheidungen
 
 - Chunk-Groesse: `64x64` Zellen.
+- Region-Groesse: `2x2` Chunks als kleiner, gut handhabbarer Streaming- und Speicherblock.
 - Rendering: Chunk-Texturen statt einzelne Zell-Quads.
-- Simulation: zuerst single-threaded korrekt machen.
+- Licht: eigene Light-Texturen pro Chunk.
+- Simulation: chunk-basiert organisieren und zuerst single-threaded korrekt machen.
 - Materialverhalten: Materialdaten plus Simulationssysteme.
 - ECS: einfach starten, spaeter ausbauen.
 - Savegames: von Anfang an versionieren.
+
+Diese Kombination ist ein guter Kompromiss aus Qualitaet, Skalierbarkeit und
+Performance.

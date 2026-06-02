@@ -1,8 +1,16 @@
 # 2D Voxel Engine Prototype
 
-![2D voxel engine world preview](docs/images/world-preview.svg)
-
 This repository contains the first implementation slice for a Rust 2D voxel/sandbox engine.
+
+The project is an engine foundation, not a finished game. The documentation should present technical architecture, data flow, and implementation milestones rather than simulated gameplay screenshots.
+
+## Architecture
+
+![Engine architecture overview](docs/images/architecture.svg)
+
+## Data Flow
+
+![Chunk data flow](docs/images/data-flow.svg)
 
 Implemented so far:
 
@@ -15,10 +23,6 @@ Implemented so far:
 - a small CLI sandbox demo
 
 The current goal is correctness and a clean engine core. Rendering, window/input handling, ECS, lighting, and mod loading are intentionally left as next milestones.
-
-## Architecture
-
-![Engine architecture overview](docs/images/architecture.svg)
 
 ## Run
 

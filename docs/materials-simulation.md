@@ -55,6 +55,10 @@ Beispiel `core:stone` oder `my_mod:blue_sand`.
 
 Pro Tick werden aktive Zellen untersucht.
 
+Die Simulation sollte chunk-basiert organisiert werden. Chunks koennen dadurch
+aktiviert, deaktiviert, als dirty markiert und spaeter gezielt parallelisiert
+werden.
+
 ```text
 Sand:
   nach unten fallen
