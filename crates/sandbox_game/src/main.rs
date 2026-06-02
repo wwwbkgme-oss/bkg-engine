@@ -1,4 +1,6 @@
-use engine_core::{Cell, CellPos, ChunkPos, MaterialRegistry, SimulationConfig, World, simulate_world};
+use engine_core::{
+    Cell, CellPos, ChunkPos, MaterialRegistry, SimulationConfig, World, simulate_world,
+};
 
 fn main() {
     let registry = MaterialRegistry::core();
